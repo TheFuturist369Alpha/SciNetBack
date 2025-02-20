@@ -1,7 +1,7 @@
 package com.jalvis.SciNet.apicontrollers;
 
 import com.jalvis.SciNet.entities.Book;
-import com.jalvis.SciNet.services.BookService;
+import com.jalvis.SciNet.services.interfaces.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

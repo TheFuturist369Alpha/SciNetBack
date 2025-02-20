@@ -1,14 +1,15 @@
-package com.jalvis.SciNet.services;
+package com.jalvis.SciNet.services.implementations;
 
 import com.jalvis.SciNet.daocrud.interfaces.UserDAO;
 import com.jalvis.SciNet.entities.User;
+import com.jalvis.SciNet.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private UserDAO dao;
 

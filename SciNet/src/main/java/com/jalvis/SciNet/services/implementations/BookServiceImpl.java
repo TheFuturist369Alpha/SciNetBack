@@ -1,16 +1,17 @@
-package com.jalvis.SciNet.services;
+package com.jalvis.SciNet.services.implementations;
 
 import com.jalvis.SciNet.daocrud.interfaces.BookDAO;
 import com.jalvis.SciNet.daocrud.interfaces.SubjectDAO;
 import com.jalvis.SciNet.entities.Book;
 import com.jalvis.SciNet.entities.Subject;
+import com.jalvis.SciNet.services.interfaces.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
 @Service
-public class BookServiceImpl implements BookService{
+public class BookServiceImpl implements BookService {
 
 
     private final SubjectDAO subdao;

@@ -1,7 +1,7 @@
 package com.jalvis.SciNet.apicontrollers;
 
 import com.jalvis.SciNet.entities.User;
-import com.jalvis.SciNet.services.UserService;
+import com.jalvis.SciNet.services.interfaces.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

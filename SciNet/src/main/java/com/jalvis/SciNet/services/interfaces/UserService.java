@@ -1,4 +1,4 @@
-package com.jalvis.SciNet.services;
+package com.jalvis.SciNet.services.interfaces;
 
 import com.jalvis.SciNet.entities.User;
 
