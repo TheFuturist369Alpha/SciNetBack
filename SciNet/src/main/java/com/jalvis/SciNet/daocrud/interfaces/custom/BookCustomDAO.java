@@ -8,8 +8,10 @@ public interface BookCustomDAO {
     public Book getBookById(Long id);
     public List<Book> getBooks();
     public List<Book> getBooksBySubject(Long id);
+    public List<Book> getBooksByOwnerId(Long id);
     public void addBook(Book book);
     public void updateBook( Book book);
+    public void updateBooks(List<Book> books);
     public void deleteBook(Long id);
 
 

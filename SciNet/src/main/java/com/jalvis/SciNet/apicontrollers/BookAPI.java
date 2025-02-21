@@ -40,6 +40,10 @@ BookAPI(BookService service){
     public void updateBook(@RequestBody Book book){
     BService.updateBook(book);
     }
+    @PutMapping("/updatebooks")
+    public void updateBooks(@RequestBody List<Book> books){
+        BService.updateBooks(books);
+    }
     @DeleteMapping("/deletebook")
     public void deleteBook( @RequestParam Long id){
         BService.deleteBook(id);

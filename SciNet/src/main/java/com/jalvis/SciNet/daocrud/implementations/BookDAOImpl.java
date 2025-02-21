@@ -40,6 +40,13 @@ public class BookDAOImpl implements BookCustomDAO {
     }
 
     @Override
+    public List<Book> getBooksByOwnerId(Long id){
+        TypedQuery<Book> query=entityManager.createQuery("FROM Book b WHERE b.user.id=:data", Book.class);
+        query.setParameter("data", id);
+        return query.getResultList();
+    }
+
+    @Override
     @Transactional
     public void addBook(Book book) {
     entityManager.persist(book);
@@ -48,15 +55,39 @@ public class BookDAOImpl implements BookCustomDAO {
     @Override
     @Transactional
     public void updateBook( Book book) {
-        entityManager.merge(book);
+
+        Book b=getBookById(book.getId());
+        entityManager.merge(bookGetterSetter(b,book));
 
     }
+
+    @Override
+    @Transactional
+    public void updateBooks(List<Book> books) {
+        for(Book book:books){
+            Book b=getBookById(book.getId());
+            entityManager.merge(bookGetterSetter(b,book));
+        }
+    }
+
 
     @Override
     @Transactional
     public void deleteBook(Long id) {
     Book book=entityManager.find(Book.class, id);
     entityManager.remove(book);
+    }
+
+    private Book bookGetterSetter(Book set, Book get){
+        set.setName(get.getName());
+        set.setDescription(get.getDescription());
+        set.setUser(get.getUser());
+        set.setAvailable(get.isAvailable());
+        set.setDate_launched(get.getDate_launched());
+        set.setPrice(get.getPrice());
+        set.setImage_url(get.getImage_url());
+        set.setSubject(get.getSubject());
+        return set;
     }
 
 

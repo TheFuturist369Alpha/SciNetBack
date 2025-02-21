@@ -11,7 +11,7 @@ public class Book {
     public Book(){}
 
     public Book( String name, String description, double price,
-                 String image_url, boolean available, Date date_launched, Subject subject) {
+                 String image_url, boolean available, Date date_launched, Subject subject, User user) {
 
         this.name=name;
         this.description = description;
@@ -20,6 +20,7 @@ public class Book {
         this.available = available;
         this.date_launched = date_launched;
         this.subject = subject;
+        this.user=user;
     }
 
 
@@ -49,6 +50,10 @@ public class Book {
     @ManyToOne
     @JoinColumn(name="subject_id", nullable = false)
     private Subject subject;
+
+    @ManyToOne
+    @JoinColumn(name="owner_id", nullable=false)
+    private User user;
 
     public Long getId() {
         return id;
@@ -112,5 +117,13 @@ public class Book {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
