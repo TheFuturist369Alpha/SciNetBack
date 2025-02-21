@@ -1,10 +1,10 @@
-package com.jalvis.SciNet.daocrud.interfaces;
+package com.jalvis.SciNet.daocrud.interfaces.custom;
 
 import com.jalvis.SciNet.entities.Book;
 
 import java.util.List;
 
-public interface BookDAO {
+public interface BookCustomDAO {
     public Book getBookById(Long id);
     public List<Book> getBooks();
     public List<Book> getBooksBySubject(Long id);

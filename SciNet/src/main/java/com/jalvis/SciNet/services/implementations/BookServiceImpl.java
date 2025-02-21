@@ -1,7 +1,7 @@
 package com.jalvis.SciNet.services.implementations;
 
-import com.jalvis.SciNet.daocrud.interfaces.BookDAO;
-import com.jalvis.SciNet.daocrud.interfaces.SubjectDAO;
+import com.jalvis.SciNet.daocrud.interfaces.custom.BookCustomDAO;
+import com.jalvis.SciNet.daocrud.interfaces.custom.SubjectCustomDAO;
 import com.jalvis.SciNet.entities.Book;
 import com.jalvis.SciNet.entities.Subject;
 import com.jalvis.SciNet.services.interfaces.BookService;
@@ -14,11 +14,11 @@ import java.util.List;
 public class BookServiceImpl implements BookService {
 
 
-    private final SubjectDAO subdao;
-    private final BookDAO bookdao;
+    private final SubjectCustomDAO subdao;
+    private final BookCustomDAO bookdao;
 
     @Autowired
-    public BookServiceImpl(SubjectDAO subdao, BookDAO bookdao){this.subdao=subdao; this.bookdao=bookdao;}
+    public BookServiceImpl(SubjectCustomDAO subdao, BookCustomDAO bookdao){this.subdao=subdao; this.bookdao=bookdao;}
 
     @Override
     public  Book createBook( String name, String description, double price,

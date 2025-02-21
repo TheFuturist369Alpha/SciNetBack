@@ -1,11 +1,11 @@
 
-package com.jalvis.SciNet.daocrud.interfaces;
+package com.jalvis.SciNet.daocrud.interfaces.custom;
 
 import com.jalvis.SciNet.entities.User;
 
 import java.util.List;
 
-public interface UserDAO {
+public interface UserCustomDAO {
     public User getUserById(Long id);
     public List<User> getUsers();
     public void addUser(User user);

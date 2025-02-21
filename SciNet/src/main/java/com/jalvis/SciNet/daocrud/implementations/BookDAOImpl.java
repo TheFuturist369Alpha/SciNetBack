@@ -1,6 +1,6 @@
 package com.jalvis.SciNet.daocrud.implementations;
 
-import com.jalvis.SciNet.daocrud.interfaces.BookDAO;
+import com.jalvis.SciNet.daocrud.interfaces.custom.BookCustomDAO;
 import com.jalvis.SciNet.entities.Book;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class BookDAOImpl implements BookDAO {
+public class BookDAOImpl implements BookCustomDAO {
 
     private EntityManager entityManager;
 
@@ -58,4 +58,6 @@ public class BookDAOImpl implements BookDAO {
     Book book=entityManager.find(Book.class, id);
     entityManager.remove(book);
     }
+
+
 }
