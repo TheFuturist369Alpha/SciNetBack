@@ -1,5 +1,6 @@
 package com.jalvis.SciNet.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -26,6 +27,7 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @JsonProperty("id")
     @Column(name="id")
     private Long id;
 
