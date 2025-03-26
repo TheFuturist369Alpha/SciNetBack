@@ -10,7 +10,7 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.List;  
 import java.util.Set;
 
 @Configuration
@@ -39,3 +39,4 @@ public class SpringConfig implements RepositoryRestConfigurer {
         config.exposeIdsFor(classes);
     }
 }
+   
