@@ -12,4 +12,5 @@ import java.util.List;
 @RepositoryRestResource( path="states")
 public interface State_JPA_DAO extends JpaRepository<State, Integer> {
     public List<State> findByCountryCode(@Param("code") String code);
+
 }

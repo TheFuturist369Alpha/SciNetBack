@@ -1,5 +1,7 @@
 package com.jalvis.SciNet.configuration;
 
+import com.jalvis.SciNet.entities.Country;
+import com.jalvis.SciNet.entities.State;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.SecondaryTable;
 import jakarta.persistence.metamodel.EntityType;
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import java.util.ArrayList;
@@ -23,7 +26,21 @@ public class SpringConfig implements RepositoryRestConfigurer {
     }
         @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors){
-        exposeIds(config);
+       HttpMethod[] methods=new HttpMethod[]{
+               HttpMethod.PUT, HttpMethod.POST,HttpMethod.DELETE
+       };
+
+       this.disableHttpMethods(State.class,config,methods);
+       this.disableHttpMethods(Country.class,config,methods);
+        this.exposeIds(config);
+    }
+
+    private void disableHttpMethods(Class cls, RepositoryRestConfiguration config, HttpMethod[] methods){
+        config.getExposureConfiguration()
+                .forDomainType(cls)
+                .withItemExposure((metdata,httpMethods)->httpMethods.disable(methods))
+                .withCollectionExposure((metdata,httpMethods)->httpMethods.disable(methods));
+
     }
 
     private void exposeIds(RepositoryRestConfiguration config){

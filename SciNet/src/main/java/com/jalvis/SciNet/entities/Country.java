@@ -18,7 +18,7 @@ public class Country {
     @Column(name="code")
     private String code;
 
-    @OneToMany(mappedBy="country")
+    @OneToMany(mappedBy="country", cascade = CascadeType.ALL)
     private List<State> states;
 
     public int getId() {
@@ -46,6 +46,7 @@ public class Country {
     }
 
     public List<State> getStates() {
+
         return states;
     }
 
