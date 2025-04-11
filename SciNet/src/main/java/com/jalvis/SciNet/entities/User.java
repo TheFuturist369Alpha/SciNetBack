@@ -2,6 +2,9 @@ package com.jalvis.SciNet.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name="users")
 public class User {
@@ -20,6 +23,19 @@ public class User {
     private String password;
     @Column(name="image")
     private String image=null;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+    private Set<Order> orders=new HashSet<>();
+
+    public void addOrder(Order order){
+        if(order!=null){
+            if(this.orders==null){
+                this.orders=new HashSet<>();
+            }
+            order.setUser(this);
+            orders.add(order);
+
+        }
+    }
 
     public Long getId() {
         return id;
@@ -67,5 +83,13 @@ public class User {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 }

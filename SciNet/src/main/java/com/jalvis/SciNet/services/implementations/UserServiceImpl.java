@@ -1,6 +1,6 @@
 package com.jalvis.SciNet.services.implementations;
 
-import com.jalvis.SciNet.daocrud.interfaces.custom.UserCustomDAO;
+import com.jalvis.SciNet.repos.crud.interfaces.custom.UserCustomRepo;
 import com.jalvis.SciNet.entities.User;
 import com.jalvis.SciNet.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +11,10 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserCustomDAO dao;
+    private UserCustomRepo dao;
 
     @Autowired
-    public UserServiceImpl(UserCustomDAO dao){this.dao=dao;}
+    public UserServiceImpl(UserCustomRepo dao){this.dao=dao;}
     @Override
     public void addUser(User user) {
         dao.addUser(user);

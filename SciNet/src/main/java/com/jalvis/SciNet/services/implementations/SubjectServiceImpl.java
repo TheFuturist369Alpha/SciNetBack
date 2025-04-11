@@ -1,6 +1,6 @@
 package com.jalvis.SciNet.services.implementations;
 
-import com.jalvis.SciNet.daocrud.implementations.SubjectDAOImpl;
+import com.jalvis.SciNet.repos.crud.implementations.SubjectRepoImpl;
 import com.jalvis.SciNet.entities.Subject;
 import com.jalvis.SciNet.services.interfaces.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class SubjectServiceImpl implements SubjectService {
     @Autowired
-    private SubjectDAOImpl dao;
+    private SubjectRepoImpl dao;
 
 
     @Override

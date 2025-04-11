@@ -1,6 +1,6 @@
-package com.jalvis.SciNet.daocrud.implementations;
+package com.jalvis.SciNet.repos.crud.implementations;
 
-import com.jalvis.SciNet.daocrud.interfaces.custom.UserCustomDAO;
+import com.jalvis.SciNet.repos.crud.interfaces.custom.UserCustomRepo;
 import com.jalvis.SciNet.entities.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -11,11 +11,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class UserDAOImp implements UserCustomDAO {
+public class UserRepoImpl implements UserCustomRepo {
     private EntityManager entityManager;
 
     @Autowired
-    public UserDAOImp(EntityManager manager){
+    public UserRepoImpl(EntityManager manager){
         entityManager=manager; }
 
     @Override

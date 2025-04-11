@@ -1,8 +1,8 @@
 package com.jalvis.SciNet.services.implementations;
 
-import com.jalvis.SciNet.daocrud.interfaces.custom.BookCustomDAO;
-import com.jalvis.SciNet.daocrud.interfaces.custom.SubjectCustomDAO;
-import com.jalvis.SciNet.daocrud.interfaces.custom.UserCustomDAO;
+import com.jalvis.SciNet.repos.crud.interfaces.custom.BookCustomRepo;
+import com.jalvis.SciNet.repos.crud.interfaces.custom.SubjectCustomRepo;
+import com.jalvis.SciNet.repos.crud.interfaces.custom.UserCustomRepo;
 import com.jalvis.SciNet.entities.Book;
 import com.jalvis.SciNet.entities.Subject;
 import com.jalvis.SciNet.entities.User;
@@ -16,12 +16,12 @@ import java.util.List;
 public class BookServiceImpl implements BookService {
 
 
-    private final SubjectCustomDAO subdao;
-    private final BookCustomDAO bookdao;
-    private final UserCustomDAO userdao;
+    private final SubjectCustomRepo subdao;
+    private final BookCustomRepo bookdao;
+    private final UserCustomRepo userdao;
 
     @Autowired
-    public BookServiceImpl(SubjectCustomDAO subdao, BookCustomDAO bookdao, UserCustomDAO userdao)
+    public BookServiceImpl(SubjectCustomRepo subdao, BookCustomRepo bookdao, UserCustomRepo userdao)
     {this.subdao=subdao; this.bookdao=bookdao; this.userdao=userdao;}
 
     @Override

@@ -1,4 +1,4 @@
-package com.jalvis.SciNet.daocrud.interfaces.jpa;
+package com.jalvis.SciNet.repos.crud.interfaces.jpa;
 
 import com.jalvis.SciNet.entities.Book;
 import org.springframework.data.domain.Page;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin("http://localhost:4200")
 @RepositoryRestResource(collectionResourceRel = "books", path = "books")
-public interface Book_JPA_DAO extends JpaRepository<Book, Long> {
+public interface Book_JPA_Repo extends JpaRepository<Book, Long> {
     public Page<Book> findByNameContaining(@Param("name") String name, Pageable page);
     @RestResource(path="byId", rel="byId")
     public Page<Book> findBySubjectId(@Param("id") Long id, Pageable page);

@@ -1,6 +1,6 @@
-package com.jalvis.SciNet.daocrud.implementations;
+package com.jalvis.SciNet.repos.crud.implementations;
 
-import com.jalvis.SciNet.daocrud.interfaces.custom.SubjectCustomDAO;
+import com.jalvis.SciNet.repos.crud.interfaces.custom.SubjectCustomRepo;
 import com.jalvis.SciNet.entities.Subject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -11,12 +11,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class SubjectDAOImpl implements SubjectCustomDAO {
+public class SubjectRepoImpl implements SubjectCustomRepo {
 
     private EntityManager manager;
 
     @Autowired
-    public SubjectDAOImpl(EntityManager manager){
+    public SubjectRepoImpl(EntityManager manager){
         this.manager=manager;
     }
 

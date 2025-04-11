@@ -26,12 +26,12 @@ public class SpringConfig implements RepositoryRestConfigurer {
     }
         @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors){
-       HttpMethod[] methods=new HttpMethod[]{
+      /* HttpMethod[] methods=new HttpMethod[]{
                HttpMethod.PUT, HttpMethod.POST,HttpMethod.DELETE
        };
 
        this.disableHttpMethods(State.class,config,methods);
-       this.disableHttpMethods(Country.class,config,methods);
+       this.disableHttpMethods(Country.class,config,methods);*/
         this.exposeIds(config);
     }
 
