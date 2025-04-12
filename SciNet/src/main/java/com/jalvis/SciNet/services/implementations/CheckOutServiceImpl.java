@@ -24,6 +24,7 @@ public class CheckOutServiceImpl implements CheckOutService {
 
         String tracking_code=generateRandomCode();
        purchase.getOrder().setTracking_code(tracking_code);
+      purchase.getItems().forEach(item->{ purchase.getOrder().addItem(item);});
        purchase.getUser().addOrder(purchase.getOrder());
        userRepo.save(purchase.getUser());
 

@@ -29,7 +29,7 @@ public class Order {
     @ManyToOne
     @JoinColumn(name="customer_id", nullable=false)
     private User user;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="shipping_address_id", nullable=false)
     private Address address;
     @Column(name="status")
