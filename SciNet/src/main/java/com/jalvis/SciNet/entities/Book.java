@@ -12,18 +12,17 @@ public class Book {
     public Book(){}
 
     public Book( String name, String description, double price,
-                 String image_url, boolean available, Date date_launched, Subject subject, User user) {
+                 String image_url, boolean available, Date date_launched, Subject subject) {
 
-        this.name=name;
+        this.name = name;
         this.description = description;
         this.price = price;
         this.image_url = image_url;
         this.available = available;
         this.date_launched = date_launched;
         this.subject = subject;
-        this.user=user;
-    }
 
+    }
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -52,10 +51,6 @@ public class Book {
     @ManyToOne
     @JoinColumn(name="subject_id", nullable = false)
     private Subject subject;
-
-    @ManyToOne
-    @JoinColumn(name="owner_id", nullable=false)
-    private User user;
 
     public Long getId() {
         return id;
@@ -117,15 +112,9 @@ public class Book {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String name){
+        this.name=name;
     }
 
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

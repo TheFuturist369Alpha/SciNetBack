@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/userapi")
 public class UserAPI {
@@ -16,7 +17,7 @@ public class UserAPI {
     }
 
     @GetMapping("/user")
-    public User getUser(@RequestParam Long id){
+    public User getUser(@RequestParam long id){
         return service.getUserById(id);
     }
 
@@ -32,17 +33,11 @@ public class UserAPI {
 
     @PutMapping("/updateuser")
     public void updateUser(@RequestBody User user){
-        User auser=service.getUserById(user.getId());
-        auser.setFirstName(user.getFirstName());
-        auser.setLastName(user.getLastName());
-        auser.setPassword(user.getPassword());
-        auser.setEmail(user.getEmail());
-        auser.setImage(user.getImage());
-        service.updateUser(auser);
+        service.updateUser(user);
     }
 
     @DeleteMapping("deleteuser/{id}")
-    public void deleteUser(@RequestParam Long id){
+    public void deleteUser(@PathVariable long id){
         service.deleteUser(id);
     }
 

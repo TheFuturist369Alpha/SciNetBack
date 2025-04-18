@@ -31,7 +31,7 @@ public class BookServiceImpl implements BookService {
 
         Subject sub=subdao.getSubjectById(subject_id);
         User user=userdao.getUserById(user_id);
-        return new Book(name, description, price, image_url,available,date_launched,sub,user);
+        return new Book(name, description, price, image_url,available,date_launched,sub);
     }
 
     @Override

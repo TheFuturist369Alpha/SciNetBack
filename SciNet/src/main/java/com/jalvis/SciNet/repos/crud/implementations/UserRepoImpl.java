@@ -38,7 +38,13 @@ public class UserRepoImpl implements UserCustomRepo {
     @Override
     @Transactional
     public void updateUser(User user) {
-        //TypedQuery<User> query=entityManager.createQuery("FROM User s WHERE s.id=:data", User.class);
+        User user1=entityManager.find(User.class, user.getId());
+        user1.setFirstName(user.getFirstName());
+        user1.setLastName(user.getLastName());
+        user1.setEmail(user.getEmail());
+        user1.setImage(user.getImage());
+        user1.setPassword(user.getPassword());
+        user1.setOrders(user.getOrders());
         entityManager.merge(user);
     }
 
@@ -46,6 +52,13 @@ public class UserRepoImpl implements UserCustomRepo {
     @Transactional
     public void deleteUser(Long id) {
         User user=entityManager.find(User.class, id);
-        entityManager.merge(user);
+        try {
+            if (user == null)
+                throw new Exception("User of " + id + " does not exist");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        entityManager.remove(user);
     }
 }

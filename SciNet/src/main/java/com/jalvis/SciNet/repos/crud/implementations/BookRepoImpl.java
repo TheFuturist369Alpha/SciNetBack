@@ -81,7 +81,6 @@ public class BookRepoImpl implements BookCustomRepo {
     private Book bookGetterSetter(Book set, Book get){
         set.setName(get.getName());
         set.setDescription(get.getDescription());
-        set.setUser(get.getUser());
         set.setAvailable(get.isAvailable());
         set.setDate_launched(get.getDate_launched());
         set.setPrice(get.getPrice());

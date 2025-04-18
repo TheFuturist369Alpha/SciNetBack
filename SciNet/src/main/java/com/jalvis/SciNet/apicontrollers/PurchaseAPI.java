@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin("http://localhost:4200")
 @RequestMapping("checkout")
-public class PurchaseController {
+public class PurchaseAPI {
     @Autowired
     private CheckOutService service;
 

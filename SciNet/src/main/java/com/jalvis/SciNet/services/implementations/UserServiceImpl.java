@@ -37,6 +37,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long id) {
-        dao.deleteUser(id);
+
+        try{dao.deleteUser(id);}
+        catch(Exception e){
+            System.out.print(e.getMessage());
+        }
     }
 }
