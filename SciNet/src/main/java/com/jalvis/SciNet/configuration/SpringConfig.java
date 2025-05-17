@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.SecondaryTable;
 import jakarta.persistence.metamodel.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -19,6 +20,8 @@ import java.util.Set;
 @Configuration
 public class SpringConfig implements RepositoryRestConfigurer {
     private EntityManager mngr;
+    //@Value("${allowed.origins}")
+    private String[] allowed_origins={"*"};
 
     @Autowired
     public SpringConfig(EntityManager mngr){
@@ -32,6 +35,7 @@ public class SpringConfig implements RepositoryRestConfigurer {
 
        this.disableHttpMethods(State.class,config,methods);
        this.disableHttpMethods(Country.class,config,methods);*/
+            //cors.addMapping("/api/**").allowedOrigins(allowed_origins);
         this.exposeIds(config);
     }
 

@@ -3,16 +3,18 @@ package com.jalvis.SciNet.apicontrollers;
 import com.jalvis.SciNet.entities.Book;
 import com.jalvis.SciNet.entities.Subject;
 import com.jalvis.SciNet.services.interfaces.SubjectService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins="http://localhost:4200")
+//@CrossOrigin(origins="https://localhost:4200")
 @RestController
 @RequestMapping("/subjectapi")
 public class SubjectAPI {
     private SubjectService service;
 
+    @Autowired
     SubjectAPI(SubjectService service){
         this.service=service;
     }

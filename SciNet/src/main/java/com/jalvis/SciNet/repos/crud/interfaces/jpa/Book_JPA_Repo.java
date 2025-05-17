@@ -9,7 +9,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("https://localhost:4200")
 @RepositoryRestResource(collectionResourceRel = "books", path = "books")
 public interface Book_JPA_Repo extends JpaRepository<Book, Long> {
     public Page<Book> findByNameContaining(@Param("name") String name, Pageable page);

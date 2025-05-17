@@ -12,8 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name="orders")
-@Getter
-@Setter
+
 public class Order {
 
     @Id
@@ -74,9 +73,7 @@ public class Order {
         return total_price;
     }
 
-    public void setTotal_price(float total_price) {
-        this.total_price = total_price;
-    }
+    public void setTotal_price(float total_price) {this.total_price = total_price;}
 
     public int getTotal_quantity() {
         return total_quantity;

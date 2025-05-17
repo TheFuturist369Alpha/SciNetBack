@@ -7,14 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
-@RequestMapping("checkout")
+//@CrossOrigin("https://localhost:4200")
+@RequestMapping("/checkout")
 public class PurchaseAPI {
     @Autowired
     private CheckOutService service;
 
-    @PostMapping("/purchase")
+    @PostMapping("purchase")
     public PurchaseResponse makePurchase(@RequestBody Purchase purchase){
+
+
+
         return service.placeOrder(purchase);
 
     }

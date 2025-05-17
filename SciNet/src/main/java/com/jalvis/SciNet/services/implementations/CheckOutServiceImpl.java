@@ -2,33 +2,48 @@ package com.jalvis.SciNet.services.implementations;
 
 import com.jalvis.SciNet.dtos.Purchase;
 import com.jalvis.SciNet.dtos.PurchaseResponse;
+import com.jalvis.SciNet.entities.User;
+import com.jalvis.SciNet.repos.crud.interfaces.custom.UserCustomRepo;
 import com.jalvis.SciNet.repos.crud.interfaces.jpa.User_JPA_Repo;
 import com.jalvis.SciNet.services.interfaces.CheckOutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.UUID;
 
 @Service
 public class CheckOutServiceImpl implements CheckOutService {
     private User_JPA_Repo userRepo;
-
+    private UserCustomRepo urp;
+    private static final Logger logger= LoggerFactory.getLogger(CheckOutServiceImpl.class);
     @Autowired
-    public CheckOutServiceImpl(User_JPA_Repo user){
+    public CheckOutServiceImpl(User_JPA_Repo user, UserCustomRepo urp){
         userRepo=user;
+        this.urp=urp;
     }
 
     @Override
     public PurchaseResponse placeOrder(Purchase purchase) {
 
-
+        logger.debug("TOTAL PRICE: ",purchase.getOrder().getTotal_price());
         String tracking_code=generateRandomCode();
        purchase.getOrder().setTracking_code(tracking_code);
       purchase.getItems().forEach(item->{ purchase.getOrder().addItem(item);});
-       purchase.getUser().addOrder(purchase.getOrder());
-       userRepo.save(purchase.getUser());
+        User user=urp.getUserByEmail(purchase.getUser().getEmail());
+        if(user==null) {
+            user=purchase.getUser();
+            user.addOrder(purchase.getOrder());
+            urp.addUser(user);
+        }
+        else{
+           user.addOrder(purchase.getOrder());
+           userRepo.save(user);
+        }
 
-        return new PurchaseResponse(tracking_code);
+
+        return new PurchaseResponse(tracking_code );
     }
 
     private String generateRandomCode(){

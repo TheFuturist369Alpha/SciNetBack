@@ -24,6 +24,15 @@ public class UserRepoImpl implements UserCustomRepo {
     }
 
     @Override
+    public User getUserByEmail(String email){
+        TypedQuery<User> query=entityManager.createQuery("FROM User usr WHERE usr.email=:data", User.class);
+        query.setParameter("data", email);
+        List<User> list=query.getResultList();
+        return list.isEmpty() ? null :list.getFirst();
+    }
+
+
+    @Override
     public List<User> getUsers() {
         TypedQuery<User> query=entityManager.createQuery("FROM User", User.class);
         return query.getResultList();

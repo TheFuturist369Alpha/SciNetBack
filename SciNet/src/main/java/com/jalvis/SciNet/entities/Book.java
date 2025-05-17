@@ -2,6 +2,7 @@ package com.jalvis.SciNet.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
@@ -45,6 +46,7 @@ public class Book {
     @Column(name="available")
     private boolean available;
 
+    @CreationTimestamp
     @Column(name="date_launched")
     private Date date_launched;
 

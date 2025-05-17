@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
+//https://localhost:8400/api/subjectapi/getsubjects @CrossOrigin("https://locahost:4200")
 @RestController
 @RequestMapping("/userapi")
 public class UserAPI {

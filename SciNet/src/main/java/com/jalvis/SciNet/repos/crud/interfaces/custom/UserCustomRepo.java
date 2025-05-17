@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface UserCustomRepo {
     public User getUserById(Long id);
+    public User getUserByEmail(String email);
     public List<User> getUsers();
     public void addUser(User user);
     public void updateUser( User user);
