@@ -25,7 +25,7 @@ public class CheckOutServiceImpl implements CheckOutService {
     private static final Logger logger= LoggerFactory.getLogger(CheckOutServiceImpl.class);
     @Autowired
     public CheckOutServiceImpl(User_JPA_Repo user, UserCustomRepo urp,
-                               @Value("${stripe.key.gitsecret}") String secretKey){
+                               @Value("${stripe.key.secret}") String secretKey){
         userRepo=user;
         this.urp=urp;
         Stripe.apiKey=secretKey;
@@ -56,11 +56,12 @@ public class CheckOutServiceImpl implements CheckOutService {
     @Override
     public PaymentIntent paymentIntent(PaymentInfo info) throws StripeException {
         List<String> paymentMethods=new ArrayList<>();
-        paymentMethods.add("Card");
+        paymentMethods.add("card");
         Map<String, Object> paymentInfo=new HashMap<>();
         paymentInfo.put("amount", info.getAmount());
-        paymentInfo.put("Currency", info.getCurrrency());
-        paymentInfo.put("Payment_Methods", paymentMethods);
+        paymentInfo.put("currency", info.getCurrency());
+        paymentInfo.put("payment_method_types", paymentMethods);
+        paymentInfo.put("receipt_email", info.getReceipt_email());
         return PaymentIntent.create(paymentInfo);
     }
 
