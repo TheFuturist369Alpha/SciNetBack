@@ -22,7 +22,7 @@ target/
 ### NetBeans ###
 /nbproject/private/
 /src/main/resources/keystore.p12
-/src/main/resources/stripeKey.txt
+/src/main/resources/application.properties
 /nbbuild/
 /dist/
 /nbdist/
