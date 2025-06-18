@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -33,10 +34,14 @@ public class BookRepoImpl implements BookCustomRepo {
     }
 
     @Override
-    public List<Book> getBooksBySubject(Long id) {
-        TypedQuery<Book> query=entityManager.createQuery("FROM Book b WHERE b.subject.id=:data", Book.class);
-        query.setParameter("data", id);
-        return query.getResultList();
+    public List<Book> getBooksBySubject(Long[] id) {
+        List<Book> books=new ArrayList<>();
+        for(long i : id) {
+            TypedQuery<Book> query = entityManager.createQuery("FROM Book b WHERE b.subject.id=:data", Book.class);
+            query.setParameter("data", i);
+           books.addAll(query.getResultList());
+        }
+        return books;
     }
 
     @Override

@@ -50,7 +50,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> getBooksBySubjectId(Long id) {
+    public List<Book> getBooksBySubjectId(Long[] id) {
         return bookdao.getBooksBySubject(id);
     }
 

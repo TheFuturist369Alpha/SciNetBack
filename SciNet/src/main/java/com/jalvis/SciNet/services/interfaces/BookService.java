@@ -12,7 +12,7 @@ public interface BookService {
     public void addBook(Book book);
     public Book getBookById(Long id);
     public List<Book> getBooks();
-    public List<Book> getBooksBySubjectId(Long id);
+    public List<Book> getBooksBySubjectId(Long[] id);
     public List<Book> getBooksByUserId(Long id);
     public void updateBook(Book book);
     public void updateBooks(List<Book> books);

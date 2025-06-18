@@ -24,7 +24,7 @@ BookAPI(BookService service){
     }
 
     @GetMapping("/getbooksbysubjectid")
-    public List<Book> booksBySubject(@RequestParam Long id){
+    public List<Book> booksBySubject(@RequestParam Long[] id){
     return BService.getBooksBySubjectId(id);
     }
 
