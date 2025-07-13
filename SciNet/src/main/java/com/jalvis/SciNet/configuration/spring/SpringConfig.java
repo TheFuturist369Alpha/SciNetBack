@@ -1,12 +1,8 @@
-package com.jalvis.SciNet.configuration;
+package com.jalvis.SciNet.configuration.spring;
 
-import com.jalvis.SciNet.entities.Country;
-import com.jalvis.SciNet.entities.State;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.SecondaryTable;
 import jakarta.persistence.metamodel.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;

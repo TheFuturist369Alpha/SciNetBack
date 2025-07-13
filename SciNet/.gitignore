@@ -22,7 +22,7 @@ target/
 ### NetBeans ###
 /nbproject/private/
 /src/main/resources/keystore.p12
-/src/main/resources/application.properties
+/src/main/resources/
 /nbbuild/
 /dist/
 /nbdist/

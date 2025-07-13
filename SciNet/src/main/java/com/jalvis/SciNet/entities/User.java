@@ -1,13 +1,15 @@
 package com.jalvis.SciNet.entities;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name="users")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +25,13 @@ public class User {
     private String password;
     @Column(name="image")
     private String image=null;
+    @Transient
+    @Enumerated(EnumType.STRING)
+    private Role appUserRole=Role.Customer;
+    @Transient
+    private boolean locked;
+    @Transient
+    private boolean enabled;
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
     private Set<Order> orders=new HashSet<>();
 
@@ -35,6 +44,10 @@ public class User {
             orders.add(order);
 
         }
+    }
+
+    public Luser toLuser(){
+        return new Luser(email,password);
     }
 
     public Long getId() {
@@ -69,8 +82,39 @@ public class User {
         this.email = email;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority=new SimpleGrantedAuthority(appUserRole.name());
+        return Collections.singletonList(authority);
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return "";
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !locked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
     }
 
     public void setPassword(String password) {
