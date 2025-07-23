@@ -5,6 +5,9 @@ import com.jalvis.SciNet.entities.User;
 import com.jalvis.SciNet.services.interfaces.AccountService;
 import com.jalvis.SciNet.services.interfaces.UserService;
 import com.jalvis.SciNet.utils.EmailValidator;
+import org.springframework.http.ResponseCookie;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,8 +25,13 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public boolean login(Luser luser) {
+    public ResponseCookie login(Luser luser) {
 
-        return service.getByPasswordAndEmail(luser)!=null;
+        User usr=(User)service.getByPasswordAndEmail(luser);
+        if(usr!=null) {
+            ResponseCookie rcookie = ResponseCookie.from("user-id", usr.getCookie()).httpOnly(true).maxAge(86400).build();
+            return rcookie;
+        }
+        return null;
     }
 }

@@ -25,6 +25,8 @@ public class User implements UserDetails {
     private String password;
     @Column(name="image")
     private String image=null;
+    @Column(name="cookie")
+    private String cookie;
     @Transient
     @Enumerated(EnumType.STRING)
     private Role appUserRole=Role.Customer;
@@ -80,6 +82,14 @@ public class User implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getCookie() {
+        return cookie;
+    }
+
+    public void setCookie(String cookie) {
+        this.cookie = cookie;
     }
 
     @Override

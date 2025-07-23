@@ -8,6 +8,7 @@ import com.jalvis.SciNet.services.interfaces.ConfirmationTokenService;
 import com.jalvis.SciNet.services.interfaces.UserService;
 import com.jalvis.SciNet.entities.ConfirmationToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,7 +26,6 @@ public class UserServiceImpl implements UserService,UserDetailsService {
     private User_JPA_Repo jdao;
     private PasswordEncoder encoder;
     private ConfirmationTokenService service;
-
     @Autowired
     public UserServiceImpl(UserCustomRepo dao, User_JPA_Repo jdao, ConfirmationTokenService service, PasswordEncoder endoder)
     {this.dao=dao; this.jdao=jdao; this.encoder=endoder; this.service=service;}
@@ -52,12 +52,15 @@ public class UserServiceImpl implements UserService,UserDetailsService {
 
     @Override
     public UserDetails getByPasswordAndEmail(Luser luser) {
-        UserDetails usrnm=loadUserByUsername(luser.getEmail());
+        User usrnm=(User)loadUserByUsername(luser.getEmail());
 
-        if(usrnm!=null){
-            String encrypted_password=usrnm.getPassword();
-            if(encoder.matches(luser.getPassword(),encrypted_password))
-                return loadUserByUsername(luser.getEmail());
+        if(usrnm!=null) {
+            String encrypted_password = usrnm.getPassword();
+            String cookie = UUID.randomUUID().toString();
+            if (encoder.matches(luser.getPassword(), encrypted_password)){
+                usrnm.setCookie(cookie);
+            return usrnm;
+        }
             return null;
         }
         return null;
@@ -89,7 +92,10 @@ public class UserServiceImpl implements UserService,UserDetailsService {
              return false;
         }
         String encoded=encoder.encode(user.getPassword());
+
+
         user.setPassword(encoded);
+
         jdao.save(user);
 
         ConfirmationToken token=new ConfirmationToken(UUID.randomUUID().toString(),

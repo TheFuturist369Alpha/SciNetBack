@@ -2,6 +2,7 @@ package com.jalvis.SciNet.services.interfaces;
 
 import com.jalvis.SciNet.entities.Luser;
 import com.jalvis.SciNet.entities.User;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
